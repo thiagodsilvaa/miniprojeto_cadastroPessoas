@@ -3,7 +3,6 @@
 require_once "conn.php";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
-    var_dump($data);
 
     $sql = "INSERT INTO pessoas (`nome_completo`, `data_nascimento`, `senha`) VALUES (:nome_completo, :data_nascimento, :senha)";
     $res = $conn ->prepare($sql);
@@ -13,3 +12,4 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $res ->execute();
 }
 
+if($res) {header ("Location: index.php");}
